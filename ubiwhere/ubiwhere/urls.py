@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+from api import views
 
+"""  Argument for user is the e-mail, which is the PK of the user  """
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url(r'^admin/', include(admin.site.urls)),
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url(r'^', include('api.urls')),
+    url(r'^list_user/$', views.user_list),
+    url(r'^add_user/$', views.add_user),
+    url(r'^user/(?P<email>[a-z0-9]+@[a-z]+.[a-z]+)$', views.user),
 ]
+
+
+urlpatterns = format_suffix_patterns(urlpatterns)
