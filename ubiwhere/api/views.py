@@ -114,7 +114,7 @@ def likes_list(request, format = None):
 		return Response(serializer.data)
 
 
-"""  Method to add a like to the DB. Accepts data that can be serialized by UserSerializer  """
+"""  Method to add a like to the DB. Accepts data that can be serialized by LikesSerializer  """
 @api_view(['POST'])
 def add_likes(request):
 	serializer = LikesSerializer(data = request.data)
