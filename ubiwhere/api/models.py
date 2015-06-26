@@ -12,6 +12,9 @@ from django.db import models
 class User(models.Model):
 #	objects = UserManager()
 
+	def __str__(self):
+		return self.email
+
 	name = models.CharField(max_length=50)
 	email = models.EmailField(primary_key = True)
 
@@ -26,6 +29,9 @@ class User(models.Model):
 class Song(models.Model):
 #	objects = SongManager()
 
+	def __str__(self):
+		return self.artist + ' - ' + self.title
+
 	"""  Django gives each model the following field: id = models.AutoField(primary_key=True)  """
 	title = models.CharField(max_length=50)
 	artist = models.CharField(max_length=20)
@@ -36,6 +42,10 @@ class Song(models.Model):
 
 """  One user can like many songs  """
 class Likes(models.Model):
+
+	def __str__(self):
+		return str(self.user) + '   likes:   ' + str(self.song)
+
 	user = models.ForeignKey(User)
 	song = models.ForeignKey(Song)
 
