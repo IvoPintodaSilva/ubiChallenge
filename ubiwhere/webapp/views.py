@@ -25,7 +25,10 @@ def user_details(request):
 	user_email = request.GET.get('user_email', '')
 	user = get_object_or_404(User, pk = user_email)
 	likes_list = Likes.objects.filter(user = user)
-	song_list = Song.objects.all()
+	""" Exclude the songs that the user already likes """
+	songs_to_exclude = [l.song.id for l in likes_list]
+	song_list = Song.objects.all().exclude(id__in = songs_to_exclude)
+	
 	context={'user':user, 'likes_list':likes_list, 'song_list':song_list}
 	return render(request, 'webapp/user_details.html', context)
 
@@ -138,6 +141,7 @@ def likes_add_onuserdetails(request):
 	likes = Likes(user = user, song = song)
 	likes.save()
 	likes_list = Likes.objects.filter(user = user)
-	song_list = Song.objects.all()
+	songs_to_exclude = [l.song.id for l in likes_list]
+	song_list = Song.objects.all().exclude(id__in = songs_to_exclude)
 	context = {'user':user, 'likes_list':likes_list, 'song_list':song_list}
 	return render(request, 'webapp/user_details.html', context)

@@ -17,18 +17,21 @@
     {% endif %}
 
     <br><br><br>
-    <form action="/webapp/likes/add_onuserdetails">
-        <input type="hidden" name="user_email" value="{{ user.email }}" />
+    
         {% if song_list %}
-            <select name="dropdown_song">
-                {% for song in song_list %}
-                    <option value="{{  song.id  }}">{{ song }}</option>
-                {% endfor %}
-            </select>
+            <form action="/webapp/likes/add_onuserdetails">
+                <input type="hidden" name="user_email" value="{{ user.email }}" />
+                    <select name="dropdown_song">
+                        {% for song in song_list %}
+                            <option value="{{  song.id  }}">{{ song }}</option>
+                        {% endfor %}
+                    </select>
+                <input type="submit" value="Like Song">
+            </form>
+        {% else %}
+        <p>User already likes all the songs.</p>
         {% endif %}
-        <input type="submit" value="Like Song">
-    </form>
-
+        
 
     <br>
 {% else %}
