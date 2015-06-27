@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^webapp/', include('webapp.urls')),
     url(r'^api/', include('api.urls')),
+    url(r'^jsonparser/', include('jsonparser.urls')),
 ]
 
 
