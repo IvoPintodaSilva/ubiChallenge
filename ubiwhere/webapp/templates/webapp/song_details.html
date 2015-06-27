@@ -1,0 +1,17 @@
+{% if song %}
+    id:<br>
+        {{ song.id }}
+    <br><br><br>
+    Title:<br>
+        {{ song.title }}
+        <br><br><br>
+    Artist:<br>
+        {{ song.artist }}
+        <br><br><br>
+    Album:<br>
+        {{ song.album }}
+        <br><br><br>
+
+{% else %}
+    <p>Song unavailable</p>
+{% endif %}

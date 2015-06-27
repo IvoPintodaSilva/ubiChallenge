@@ -1,0 +1,36 @@
+{% if user %}
+    E-mail:<br>
+        {{ user.email }}
+    <br><br><br>
+    Name:<br>
+        {{ user.name }}
+        <br><br><br>
+
+    {% if likes_list %}
+        Likes:<br>
+        {% for likes in likes_list %}
+            
+                {{ likes }}<br>
+        {% endfor %}
+    {% else %}
+        User doesn't have Likes<br>
+    {% endif %}
+
+    <br><br><br>
+    <form action="/webapp/likes/add_onuserdetails">
+        <input type="hidden" name="user_email" value="{{ user.email }}" />
+        {% if song_list %}
+            <select name="dropdown_song">
+                {% for song in song_list %}
+                    <option value="{{  song.id  }}">{{ song }}</option>
+                {% endfor %}
+            </select>
+        {% endif %}
+        <input type="submit" value="Like Song">
+    </form>
+
+
+    <br>
+{% else %}
+    <p>User unavailable</p>
+{% endif %}

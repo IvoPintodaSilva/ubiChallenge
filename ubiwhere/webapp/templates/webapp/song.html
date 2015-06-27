@@ -1,0 +1,17 @@
+{% if song_list %}
+    <ul>
+    {% for song in song_list %}
+        <li><a href="/webapp/song/details?song_id={{ song.id }}">{{ song }}</a>
+        <form action="/webapp/song/delete">
+        <input type="hidden" name="song_id" value="{{ song.id }}" />
+    	<input type="submit" value="Delete">
+		</form></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No songs are available.</p>
+{% endif %}
+<form action="/webapp/song/form">
+<input type="submit" value="Add Song">
+</form></li>
+

@@ -44,7 +44,7 @@ class Song(models.Model):
 class Likes(models.Model):
 
 	def __str__(self):
-		return str(self.user) + '   likes:   ' + str(self.song)
+		return str(self.user) + ' likes: ' + str(self.song)
 
 	user = models.ForeignKey(User)
 	song = models.ForeignKey(Song)

@@ -1,0 +1,19 @@
+{% if user_list %}
+    <ul>
+    {% for user in user_list %}
+        <li><a href="/webapp/user/details?user_email={{ user }}">{{ user }}</a>
+        <form action="/webapp/user/delete">
+        <input type="hidden" name="user_email" value="{{ user.email }}" />
+    	<input type="submit" value="Delete">
+		</form></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No users are available.</p>
+{% endif %}
+
+
+<form action="/webapp/user/form">
+<input type="submit" value="Add User">
+</form></li>
+

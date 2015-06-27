@@ -1,0 +1,22 @@
+<form action="/webapp/likes/add">
+
+{% if user_list %}
+	<select name="dropdown_user">
+		{% for user in user_list %}
+			<option value="{{  user.email  }}">{{ user.email }}</option>
+		{% endfor %}
+	</select>
+{% endif %}
+
+Likes
+
+{% if song_list %}
+	<select name="dropdown_song">
+		{% for song in song_list %}
+			<option value="{{  song.id  }}">{{ song }}</option>
+		{% endfor %}
+	</select>
+{% endif %}
+
+<input type="submit" value="Submit Likes">
+</form>

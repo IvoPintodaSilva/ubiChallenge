@@ -16,11 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
-from api import views
 """  Argument for user is the e-mail, which is the PK of the user  """
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.index),
+    url(r'^webapp/', include('webapp.urls')),
     url(r'^api/', include('api.urls')),
 ]
 
