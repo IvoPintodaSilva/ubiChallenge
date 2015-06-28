@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.models import User, Song, Likes
 from api.serializers import UserSerializer, SongSerializer, LikesSerializer
+import json
 
 
 
@@ -66,8 +68,15 @@ def song_list(request, format = None):
 """  Method to add a song to the DB. Accepts data that can be serialized by SongSerializer  """
 @api_view(['POST'])
 def add_song(request):
-	serializer = SongSerializer(data = request.data)
+	serializer = SongSerializer(data = request.data)	
+	
 	if serializer.is_valid():
+
+		"""  Check if the song already exists  """
+		jdict = json.loads(json.dumps(request.data))
+		if len(Song.objects.all().filter(title__iexact = jdict['title']).filter(artist__iexact = jdict['artist']).filter(album__iexact = jdict['album'])) > 0:
+			return Response(serializer.data, status = status.HTTP_200_OK)
+
 		serializer.save()
 		return Response(serializer.data, status = status.HTTP_201_CREATED)
 	else:

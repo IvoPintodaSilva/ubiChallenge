@@ -5,7 +5,7 @@ from django.template import RequestContext, loader
 from django.shortcuts import render, get_object_or_404
 from itertools import chain
 import json
-# Create your views here.
+import re
 
 
 """  Serves a page for the user to select User, Song or Likes operations  """
@@ -48,10 +48,19 @@ def user_form(request):
 def user_add(request):
 	name = request.GET.get('name', '')
 	email = request.GET.get('email', '')
-	user = User(email = email, name = name)
-	user.save()
 	context={}
-	return render(request, 'webapp/user_added.html', context)
+	"""  check if email is correct and name not empty  """
+	if not re.match(r"[^@]+@[^@]+\.[^@]+", email) or name == '':
+		return render(request, 'webapp/user_form.html', context)
+	"""  check if user already exists  """
+	try:
+		exists = User.objects.get(email=email)
+	except User.DoesNotExist:
+		exists = None
+		user = User(email = email, name = name)
+		user.save()
+		return render(request, 'webapp/user_added.html', context)
+	return render(request, 'webapp/user_form.html', context)
 
 	
 
@@ -83,6 +92,13 @@ def song_add(request):
 	title = request.GET.get('title', '')
 	artist = request.GET.get('artist', '')
 	album = request.GET.get('album', '')
+	context={}
+	"""  Check if title, artist or album are empty  """
+	if title == '' or artist == '' or album == '':
+		return render(request, 'webapp/song_form.html', context)
+	"""  Check if song already exists  """
+	if len(Song.objects.all().filter(title__iexact = title).filter(artist__iexact = artist).filter(album__iexact = album)) > 0:
+		return render(request, 'webapp/song_form.html', context)
 	song = Song(title = title, artist = artist, album = album)
 	song.save()
 	context={}

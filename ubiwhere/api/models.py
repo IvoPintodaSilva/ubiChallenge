@@ -30,7 +30,8 @@ class Song(models.Model):
 #	objects = SongManager()
 
 	def __str__(self):
-		return self.artist + ' - ' + self.title
+		return self.artist.encode('utf-8') + ' - ' + self.title.encode('utf-8')
+
 
 	"""  Django gives each model the following field: id = models.AutoField(primary_key=True)  """
 	title = models.CharField(max_length=50)
