@@ -1,7 +1,7 @@
 {% if likes_list %}
     <ul>
     {% for likes in likes_list %}
-        <li><a href="/webapp/{{ likes.id }}/">{{ likes }}</a></li>
+        <li><a>{{ likes }}</a></li>
     	<form action="/webapp/likes/delete">
         <input type="hidden" name="likes_id" value="{{ likes.id }}" />
     	<input type="submit" value="Delete">

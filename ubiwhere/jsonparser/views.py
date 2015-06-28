@@ -12,6 +12,7 @@ def parse_json(request):
 	json_data = requests.get('http://freemusicarchive.org/recent.json')
 	data = json.loads(json_data.content)
 
+	"""  The only attributes needed in order to insert a song using the API  """
 	d = {'title': '', 'artist': '', 'album': ''}
 	resp = '['
 	for track in data['aTracks']:
@@ -25,8 +26,11 @@ def parse_json(request):
 		"""  POSTs the data into the system using the API  """
 		r = requests.post('http://ivopintodasilva.herokuapp.com/api/add_song/', data = json.dumps(d), headers={'content-type': 'application/json; charset=utf-8'})
 		
+		"""  Gets status code 201 if the song is created or 200 if it's already there  """
 		if r.status_code != 201 and r.status_code != 200:
 			return HttpResponse(status = 400)
 		resp = resp + str(json.dumps(d))
 	resp = resp + ']'
-	return HttpResponse(str(resp), status = 200)
+
+	"""  Dumps the parsed JSON  """
+	return HttpResponse(str(resp) + '<br><br><br><a href="/webapp/song">Check Songs on Webapp</a>', status = 200)

@@ -5,10 +5,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.models import User, Song, Likes
 from api.serializers import UserSerializer, SongSerializer, LikesSerializer
+from django.http import HttpResponse, HttpRequest
 import json
 
 
-
+"""  Lists all the API's methods  """
+def index(request):
+	return HttpResponse('<h1>API</h1><a href="/api/list_user/">List Users</a><br><a href="/api/add_user/">Add User</a> - Provide email and name (JSON)<br><a href="/api/user/">User Update, Delete, Get</a> - URL Args needed: e-mail<br><br><a href="/api/list_song/">List Songs</a><br><a href="/api/add_song/">Add Song</a> - Provide title, artist and album (JSON)<br><a href="/api/song/">Song Update, Delete, Get</a> - URL Args needed: id<br><br><a href="/api/list_likes/">List Likes</a><br><a href="/api/add_likes/">Add Likes</a> - Provide user (email) and song (id) (JSON)<br><br>Tests provided on django project (python manage.py test)')
 
 
 """  Method to list all the users in the DB. It's serialized, so it can be read in JSON...  """

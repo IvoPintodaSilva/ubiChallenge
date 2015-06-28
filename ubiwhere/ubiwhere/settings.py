@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'api',
     'webapp',
     'jsonparser',
+    'home',
 )
 
 MIDDLEWARE_CLASSES = (

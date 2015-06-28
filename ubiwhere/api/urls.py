@@ -2,9 +2,10 @@ from django.conf.urls import include, url
 from rest_framework.urlpatterns import format_suffix_patterns
 from api import views
 
+
+"""  URLs defined for every method of the API  """
 urlpatterns = [
-    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #url(r'^', include('api.urls')),
+    url(r'^$', views.index),
     url(r'^list_user/$', views.user_list),
     url(r'^add_user/', views.add_user),
     url(r'^user/(?P<email>[a-z0-9]+@[a-z]+.[a-z]+)$', views.user),

@@ -27,7 +27,7 @@ class APITestCase(TestCase):
 		"""  Invoke REST method to list all users  """
 		"""  It should print to the console 4 users  """
 		r = self.client.get('/api/list_user/', format = 'json')
-		print '\ntest_add_users: 4 users should be displayed\nUsers in the system:\n' + r.content
+		print '\ntest_add_users: 4 users added\nUsers in the system:\n' + r.content
 
 	"""  Test that POSTs 4 users into the system and DELETEs 3 of them  """
 	def test_delete_users(self):
@@ -51,7 +51,7 @@ class APITestCase(TestCase):
 		"""  Invoke REST method to list all users  """
 		"""  It should print to the console 1 user  """
 		r = self.client.get('/api/list_user/', format = 'json')
-		print '\ntest_delete_users: 1 user should be displayed\nUsers in the system:\n' + r.content
+		print '\ntest_delete_users: 4 users added and 3 deleted\nUsers in the system:\n' + r.content
 
 
 
@@ -69,7 +69,7 @@ class APITestCase(TestCase):
 
 		"""  Invoke REST method to list all songs  """
 		r = self.client.get('/api/list_song/', format = 'json')
-		print '\ntest_add_songs: 4 songs should be displayed\nSongs in the system:\n' + r.content
+		print '\ntest_add_songs: 4 songs added\nSongs in the system:\n' + r.content
 
 
 
@@ -98,7 +98,7 @@ class APITestCase(TestCase):
 		"""  Invoke REST method to list all songs  """
 		"""  There should only remain 1 song in the system  """
 		r = self.client.get('/api/list_song/', format = 'json')
-		print '\ntest_delete_songs: 1 song should be displayed\nSongs in the system:\n' + r.content
+		print '\ntest_delete_songs: 4 songs added and 3 deleted\nSongs in the system:\n' + r.content
 
 
 	"""  Test that POSTs 4 likes into the system  """
@@ -140,6 +140,6 @@ class APITestCase(TestCase):
 
 		"""  Invoke REST method to list all likes  """
 		r = self.client.get('/api/list_likes/', format = 'json')
-		print '\ntest_add_likes: 4 Likes should be displayed\nLikes in the system:\n' + r.content
+		print '\ntest_add_likes: 4 likes added \nLikes in the system:\n' + r.content
 
 

@@ -3,7 +3,7 @@ from rest_framework import serializers
 from api.models import User, Song, Likes
 
 
-"""  serialize information in json  """
+"""  serialize information  """
 
 
 """  Serializes User object  """

@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from webapp import views
 
+
 urlpatterns = [
 	url(r'^$', views.index),
 	url(r'^user/$', views.user),
