@@ -11,7 +11,7 @@ import json
 
 """  Lists all the API's methods  """
 def index(request):
-	return HttpResponse('<h1>API</h1><a href="/api/list_user/">List Users</a><br><a href="/api/add_user/">Add User</a> - Provide email and name (JSON)<br><a href="/api/user/">User Update, Delete, Get</a> - URL Args needed: e-mail<br><br><a href="/api/list_song/">List Songs</a><br><a href="/api/add_song/">Add Song</a> - Provide title, artist and album (JSON)<br><a href="/api/song/">Song Update, Delete, Get</a> - URL Args needed: id<br><br><a href="/api/list_likes/">List Likes</a><br><a href="/api/add_likes/">Add Likes</a> - Provide user (email) and song (id) (JSON)<br><br>Tests provided on django project (python manage.py test)<br><br><a href="/index/">Index</a>')
+	return HttpResponse('<h1>API</h1><a href="/api/list_user/">List Users</a><br><a href="/api/add_user/">Add User</a> - Provide email and name (JSON): {"email": "##email##", "name":"##name##"}<br><a href="/api/user/">User Update, Delete, Get</a> - URL Args needed: e-mail<br><br><a href="/api/list_song/">List Songs</a><br><a href="/api/add_song/">Add Song</a> - Provide title, artist and album (JSON): {"title": "##title##", "artist":"##artist##", "album": "##album##"}<br><a href="/api/song/">Song Update, Delete, Get</a> - URL Args needed: id<br><br><a href="/api/list_likes/">List Likes</a><br><a href="/api/add_likes/">Add Likes</a> - Provide user (email) and song (id) (JSON): {"user": "##useremail##", "song":"##songid##"}<br><br>Tests provided on django project (python manage.py test)<br><br><a href="/index/">Index</a>')
 
 
 """  Method to list all the users in the DB. It's serialized, so it can be read in JSON...  """
