@@ -33,4 +33,4 @@ def parse_json(request):
 	resp = resp + ']'
 
 	"""  Dumps the parsed JSON  """
-	return HttpResponse(str(resp) + '<br><br><br><a href="/webapp/song">Check Songs on Webapp</a>', status = 200)
+	return HttpResponse(str(resp) + '<br><br><br><a href="/webapp/song">Check Songs on Webapp</a><br><br><a href="/index/">Index</a>', status = 200)
