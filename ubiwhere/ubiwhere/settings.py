@@ -129,7 +129,7 @@ BOOTSTRAP3 = {
     'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/',
 
     # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
-    'css_url': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+    'css_url': 'https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css',
 
     # The complete URL to the Bootstrap CSS file (None means no theme)
     'theme_url': 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css',

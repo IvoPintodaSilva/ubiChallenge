@@ -19,7 +19,7 @@
                             <div class="btn-group" role="group">
                                 <form action="/webapp/user/details">
                                     <input type="hidden" name="user_email" value="{{ user.email }}" />
-                                    {% bootstrap_button user button_type="submit" button_class="btn btn-info" %}
+                                    {% bootstrap_button user button_type="submit" button_class="btn btn-primary" size="xs"%}
                                 </form>
                                 <form action="/webapp/user/delete">
                                     <input type="hidden" name="user_email" value="{{ user.email }}" />
@@ -32,10 +32,18 @@
                   </div>
                 </div>
 
+
+
+
         {% endfor %}
     {% else %}
         <p>No users are available.</p>
     {% endif %}
+     <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <center><form action="/webapp/user/add">
+            {% bootstrap_button 'Add User' button_type="submit" button_class="btn btn-primary" icon="plus" size="lg" %}
+        </form></center>
+    </div>
 {% endblock %}
 
 

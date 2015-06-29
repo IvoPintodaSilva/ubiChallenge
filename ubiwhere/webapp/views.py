@@ -155,7 +155,9 @@ def likes_add_onuserdetails(request):
 	song_id = request.GET.get('dropdown_song','')
 	song = get_object_or_404(Song, pk = int(song_id))
 	likes = Likes(user = user, song = song)
-	likes.save()
+	"""  Check if like already exists  """
+	if len(Likes.objects.all().filter(song__id__iexact = song_id).filter(user__email__iexact = user_email)) == 0:
+		likes.save()
 	likes_list = Likes.objects.filter(user = user)
 	songs_to_exclude = [l.song.id for l in likes_list]
 	song_list = Song.objects.all().exclude(id__in = songs_to_exclude)

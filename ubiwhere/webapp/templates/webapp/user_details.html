@@ -1,41 +1,59 @@
+{% extends 'webapp/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+<br>
 {% if user %}
-    E-mail:<br>
-        {{ user.email }}
-    <br><br><br>
-    Name:<br>
-        {{ user.name }}
-        <br><br><br>
-
-    {% if likes_list %}
-        Likes:<br>
+<div class="row-centered">
+    <center>
+    <div class="thumbnail" align="center" style="width:350px;">
+    <br>
+      <img src="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png" alt="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png">
+      <div class="caption">
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.email }}</p>
+        {% if likes_list %}
+        <p>Likes:</p>
         {% for likes in likes_list %}
-            
-                {{ likes }}<br>
-        {% endfor %}
-    {% else %}
-        User doesn't have Likes<br>
-    {% endif %}
 
-    <br><br><br>
-    
-        {% if song_list %}
-            <form action="/webapp/likes/add_onuserdetails">
-                <input type="hidden" name="user_email" value="{{ user.email }}" />
-                    <select name="dropdown_song">
-                        {% for song in song_list %}
-                            <option value="{{  song.id  }}">{{ song }}</option>
-                        {% endfor %}
-                    </select>
-                <input type="submit" value="Like Song">
-            </form>
+        <ul class="list-group">
+          <li class="list-group-item">{{ likes.song }}</li>
+        </ul>
+            
+                
+        {% endfor %}
         {% else %}
+             <p>User doesn't have Likes</p>
+        {% endif %}
+
+{% if song_list %}
+       <div class="dropup">
+          <button class="btn btn-default dropdown-toggle" type="submit" id="dropdown_song" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Songs
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_song">
+          {% for song in song_list %}
+            <li><a href="/webapp/likes/add_onuserdetails/?user_email={{ user.email }}&dropdown_song={{ song.id }}">{{ song }}</a></li>
+            {% endfor %}
+          </ul>
+          </form>
+        </div>
+            {% else %}
         <p>User already likes all the songs.</p>
         {% endif %}
-        
 
-    <br>
+
 {% else %}
     <p>User unavailable</p>
 {% endif %}
 
-<a href="/webapp/">Home</a>
+        
+      </div>
+    </div>
+    </center>
+</div>
+
+{% endblock %}
