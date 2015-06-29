@@ -1,20 +1,42 @@
-{% if user_list %}
-    <ul>
-    {% for user in user_list %}
-        <li><a href="/webapp/user/details?user_email={{ user }}">{{ user }}</a>
-        <form action="/webapp/user/delete">
-        <input type="hidden" name="user_email" value="{{ user.email }}" />
-    	<input type="submit" value="Delete">
-		</form></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No users are available.</p>
-{% endif %}
+{% extends 'webapp/base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}User{% endblock %}
 
 
-<form action="/webapp/user/form">
-<input type="submit" value="Add User">
-</form></li>
+{% block content %}
+<br>
+    {% if user_list %}
+        {% for user in user_list %}
 
-<a href="/webapp/">Home</a>
+                <div class="row-fluid">
+                  <div class="col-xs-3 col-md-2">
+
+                    <a class="thumbnail">
+                    
+                      <img src="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png" alt="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <form action="/webapp/user/details">
+                                    <input type="hidden" name="user_email" value="{{ user.email }}" />
+                                    {% bootstrap_button user button_type="submit" button_class="btn btn-info" %}
+                                </form>
+                                <form action="/webapp/user/delete">
+                                    <input type="hidden" name="user_email" value="{{ user.email }}" />
+                                    {% bootstrap_button 'Delete' button_type="submit" button_class="btn btn-danger" icon="remove" size="xs" %}
+                                </form>
+                            </div>
+                        </div>
+
+                    </a>
+                  </div>
+                </div>
+
+        {% endfor %}
+    {% else %}
+        <p>No users are available.</p>
+    {% endif %}
+{% endblock %}
+
+
+

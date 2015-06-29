@@ -1,0 +1,36 @@
+{% extends 'webapp/bootstrap.html' %}
+
+{% load url from future %}
+
+{% load bootstrap3 %}
+
+{% block bootstrap3_content %}
+    <div class="container">
+        <div class="page-header">
+          <center><h1>{% block title %}(no title){% endblock %}</h1></center>
+        </div>        
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            
+            <div class="btn-group" role="group">
+                {% bootstrap_button 'Home' href="/webapp/" button_class="btn btn-link" icon="home" %}
+            </div>
+            <div class="btn-group" role="group">
+                {% bootstrap_button 'User' href="/webapp/user/" button_class="btn btn-link" icon="user" %}
+            </div>
+            <div class="btn-group" role="group">
+                {% bootstrap_button 'Song' href="/webapp/song/" button_class="btn btn-link" icon="headphones" %}
+            </div>
+            <div class="btn-group" role="group">
+                {% bootstrap_button 'Likes' href="/webapp/likes/" button_class="btn btn-link" icon="heart" %}
+            </div>
+
+            
+        </div>
+            {% bootstrap_messages %}
+
+
+        {% block content %}(no content){% endblock %}
+    </div>
+
+{% endblock %}
