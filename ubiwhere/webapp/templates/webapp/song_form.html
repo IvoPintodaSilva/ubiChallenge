@@ -1,17 +1,30 @@
-<form action="/webapp/song/add">
+{% extends 'webapp/base.html' %}
+{% load bootstrap3 %}
 
-Title:<br>
-<input type="text" name="title">
-<br>
-Artist:<br>
-<input type="text" name="artist">
-<br>
-Album:<br>
-<input type="text" name="album">
+{% block title %}User{% endblock %}
+
+
+{% block content %}
 <br>
 
+<div class="row-centered">
+    <center>
+    <div class="thumbnail" align="center" style="width:350px;">
+    <br>
+      <img src="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_iTunes.png" alt="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_iTunes.png">
+      <div class="caption">
+        <div class="input-group input-group-sm">
+          <form action="/webapp/song/add">
+		  <input name="title" type="text" class="form-control" placeholder="Title" >
+		  <input name="artist" type="text" class="form-control" placeholder="Artist" >
+		  <input name="album" type="text" class="form-control" placeholder="Album" >
+		  <button type="submit" class="btn btn-primary btn-md btn-block">Submit Song</button>
+		  </form>
+		</div>
+       
+      </div>
+    </div>
+    </center>
+</div>
 
-<input type="submit" value="Submit Song">
-</form></li>
-
-<a href="/webapp/">Home</a>
+{% endblock %}

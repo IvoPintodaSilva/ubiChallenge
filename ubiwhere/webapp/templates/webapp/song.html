@@ -3,33 +3,46 @@
 
 {% block title %}Song{% endblock %}
 
-
 {% block content %}
-
+<br>
     {% if song_list %}
         {% for song in song_list %}
-            <div class="container">
-            <br>
 
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                
-                    <div class="btn-group" role="group">
-                        <form action="/webapp/song/details">
-                            <input type="hidden" name="song_id" value="{{ song.id }}" />
-                            {% bootstrap_button song button_type="submit" button_class="btn btn-info" %}
-                        </form>
-                        <form action="/webapp/song/delete">
-                            <input type="hidden" name="song_id" value="{{ song.id }}" />
-                            {% bootstrap_button 'Delete' button_type="submit" button_class="btn btn-danger" icon="remove" size="xs" %}
-                        </form>
-                    </div>
+                <div class="row-fluid">
+                  <div class="col-xs-5 col-md-3">
 
+                    <a class="thumbnail">
+                    
+                      <img src="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_iTunes.png" alt="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_iTunes.png">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <form action="/webapp/song/details">
+                                    <input type="hidden" name="song_id" value="{{ song.id }}" />
+                                    {% bootstrap_button song button_type="submit" button_class="btn btn-info" icon="music" size="xs"%}
+                                </form>
+                                <form action="/webapp/song/delete">
+                                    <input type="hidden" name="song_id" value="{{ song.id }}" />
+                                    {% bootstrap_button 'Delete' button_type="submit" button_class="btn btn-danger" icon="trash" size="xs" %}
+                                </form>
+                            </div>
+                        </div>
 
+                    </a>
+                  </div>
                 </div>
 
-            </div>
+
+
+
         {% endfor %}
     {% else %}
-        <p>No songs are available.</p>
+        <p>No users are available.</p>
     {% endif %}
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <center><form action="/webapp/song/add">
+        <br>
+            {% bootstrap_button 'Add Song' button_type="submit" button_class="btn btn-primary" icon="plus" size="lg" %}
+        </form></center>
+    </div>
 {% endblock %}
+

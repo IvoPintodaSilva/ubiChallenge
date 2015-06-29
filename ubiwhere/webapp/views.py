@@ -37,8 +37,8 @@ def user_delete(request):
 	user_email = request.GET.get('user_email', '')
 	user = get_object_or_404(User, pk = user_email)
 	user.delete()
-	context = {}
-	return render(request, 'webapp/user_removed.html', context)
+	context = {'user_list': User.objects.all().order_by('email')}
+	return render(request, 'webapp/user.html', context)
 
 """  Serves a form to introduce credentials of new user  """
 def user_form(request):
@@ -59,7 +59,9 @@ def user_add(request):
 		exists = None
 		user = User(email = email, name = name)
 		user.save()
-		return render(request, 'webapp/user_added.html', context)
+		user_list = User.objects.all().order_by('email')
+		context={"user_list":user_list}
+		return render(request, 'webapp/user.html', context)
 	return render(request, 'webapp/user_form.html', context)
 
 	
@@ -80,8 +82,8 @@ def song_delete(request):
 	song_id = request.GET.get('song_id', '')
 	song = get_object_or_404(Song, pk = song_id)
 	song.delete()
-	context = {}
-	return render(request, 'webapp/song_removed.html', context)
+	context={"song_list":Song.objects.all()}
+	return render(request, 'webapp/song.html', context)
 
 """  Serves a form to introduce credentials of new song  """
 def song_form(request):
@@ -101,14 +103,19 @@ def song_add(request):
 		return render(request, 'webapp/song_form.html', context)
 	song = Song(title = title, artist = artist, album = album)
 	song.save()
-	context={}
-	return render(request, 'webapp/song_added.html', context)
+	context={"song_list":Song.objects.all()}
+	return render(request, 'webapp/song.html', context)
 
 """  Serves a detailed user page when you click on the song  """
 def song_details(request):
 	song_id = request.GET.get('song_id', '')
 	song = get_object_or_404(Song, pk = song_id)
-	context={'song':song}
+	likes_list = Likes.objects.all().filter(song__id__iexact = song_id)
+	user_list = []
+	for l in likes_list:
+		user_list += [l.user]
+	print user_list
+	context={'song':song, 'user_list':user_list}
 	return render(request, 'webapp/song_details.html', context)
 
 

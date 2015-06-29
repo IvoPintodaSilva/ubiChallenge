@@ -7,7 +7,7 @@
 {% block bootstrap3_content %}
     <div class="container">
         <div class="page-header">
-          <center><h1>{% block title %}(no title){% endblock %}</h1></center>
+          <center><h1 class="text-info">{% block title %}(no title){% endblock %}</h1></center>
         </div>        
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -21,9 +21,7 @@
             <div class="btn-group" role="group">
                 {% bootstrap_button 'Song' href="/webapp/song/" button_class="btn btn-link" icon="headphones" %}
             </div>
-            <div class="btn-group" role="group">
-                {% bootstrap_button 'Likes' href="/webapp/likes/" button_class="btn btn-link" icon="thumbs-up" %}
-            </div>
+            
 
             
         </div>

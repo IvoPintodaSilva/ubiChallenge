@@ -16,23 +16,18 @@
         <p>{{ user.email }}</p>
         {% if likes_list %}
         <p>Likes:</p>
-        {% for likes in likes_list %}
-
         <ul class="list-group">
-          <li class="list-group-item">{{ likes.song }}</li>
-        </ul>
-            
-                
+        {% for likes in likes_list %}
+          <li class="list-group-item">{{ likes.song }}</li>   
         {% endfor %}
+        </ul>
         {% else %}
              <p>User doesn't have Likes</p>
         {% endif %}
 
 {% if song_list %}
        <div class="dropup">
-          <button class="btn btn-default dropdown-toggle" type="submit" id="dropdown_song" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Songs
-            <span class="caret"></span>
+          <button class="btn btn-default dropdown-toggle" type="submit" id="dropdown_song" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Suggested songs<span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_song">
           {% for song in song_list %}

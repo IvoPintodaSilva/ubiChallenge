@@ -1,14 +1,43 @@
-<form action="/webapp/user/add">
+{% extends 'webapp/base.html' %}
+{% load bootstrap3 %}
 
-E-mail:<br>
-<input type="text" name="email">
+{% block title %}User{% endblock %}
+
+
+{% block content %}
 <br>
-Name:<br>
-<input type="text" name="name">
-<br>
 
-<input type="submit" value="Submit User">
-</form></li>
+<div class="row-centered">
+    <center>
+    <div class="thumbnail" align="center" style="width:350px;">
+    <br>
+      <img src="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png" alt="http://images.clipartpanda.com/person-clipart-silhouette-blue-light-blue-man-silhouette-md.png">
+      <div class="caption">
+        <div class="input-group input-group-sm">
+          <form action="/webapp/user/add">
+		  <input name="email" type="text" class="form-control" placeholder="E-mail address" >
+		  <input name="name" type="text" class="form-control" placeholder="User's name" >
+		  <button type="submit" class="btn btn-primary btn-md btn-block">Submit User</button>
+		  </form>
+		</div>
+       
+      </div>
+    </div>
+    </center>
+</div>
+
+{% endblock %}
 
 
-<a href="/webapp/">Home</a>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,11 +19,11 @@
                             <div class="btn-group" role="group">
                                 <form action="/webapp/user/details">
                                     <input type="hidden" name="user_email" value="{{ user.email }}" />
-                                    {% bootstrap_button user button_type="submit" button_class="btn btn-primary" size="xs"%}
+                                    {% bootstrap_button user button_type="submit" button_class="btn btn-info" icon="user" size="xs"%}
                                 </form>
                                 <form action="/webapp/user/delete">
                                     <input type="hidden" name="user_email" value="{{ user.email }}" />
-                                    {% bootstrap_button 'Delete' button_type="submit" button_class="btn btn-danger" icon="remove" size="xs" %}
+                                    {% bootstrap_button 'Delete' button_type="submit" button_class="btn btn-danger" icon="trash" size="xs" %}
                                 </form>
                             </div>
                         </div>
