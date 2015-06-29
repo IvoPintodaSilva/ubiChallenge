@@ -37,10 +37,11 @@
 
         {% endfor %}
     {% else %}
-        <p>No users are available.</p>
+        <center><p>No users are available.</p></center>
     {% endif %}
      <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <center><form action="/webapp/user/add">
+        <br>
             {% bootstrap_button 'Add User' button_type="submit" button_class="btn btn-primary" icon="plus" size="lg" %}
         </form></center>
     </div>

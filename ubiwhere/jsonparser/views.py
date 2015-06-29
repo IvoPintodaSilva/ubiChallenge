@@ -27,8 +27,11 @@ def parse_json(request):
 		r = requests.post('http://ivopintodasilva.herokuapp.com/api/add_song/', data = json.dumps(d), headers={'content-type': 'application/json; charset=utf-8'})
 		
 		"""  Gets status code 201 if the song is created or 200 if it's already there  """
-		if r.status_code != 201 and r.status_code != 200:
-			return HttpResponse(status = 400)
+		"""  Decided to remove this verification because aTracks with special characters fail to be inserted  """
+		"""  This way, if one fails, all the other ones are still inserted into the system   """
+		#if r.status_code != 201 and r.status_code != 200:
+			#return HttpResponse(status = 400)
+
 		resp = resp + str(json.dumps(d))
 	resp = resp + ']'
 
